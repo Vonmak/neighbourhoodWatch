@@ -12,6 +12,13 @@ class Admin(models.Model):
     def __str__(self):
         return f'{self.name} Admin'
     
+    def save_admin(self):
+        self.save()
+        
+    def delete_admin(self):
+        self.delete()
+     
+    
 
 class Policedept(models.Model):
     name = models.CharField(max_length=30)
@@ -22,6 +29,13 @@ class Policedept(models.Model):
     def __str__(self):
         return f'{self.name} Policedept'
     
+    def save_police(self):
+        self.save()
+        
+    def delete_police(self):
+        self.delete()
+     
+    
     
 class Healthdept(models.Model):
     name = models.CharField(max_length=30)
@@ -31,6 +45,13 @@ class Healthdept(models.Model):
     
     def __str__(self):
         return f'{self.name} Healthdept'
+    
+    def save_health(self):
+        self.save()
+        
+    def delete_health(self):
+        self.delete()
+     
 
 class Neighbourhood(models.Model):
     name = models.CharField(max_length=30)
@@ -42,6 +63,35 @@ class Neighbourhood(models.Model):
     
     def __str__(self):
         return f'{self.name} Neighbourhood'
+    
+    def save_hood(self):
+        self.save()
+        
+    def delete_hood(self):
+        self.delete()
+        
+    def update_hood(self, new_hood):
+        try:
+            self.name = new_hood
+            self.save()
+            return self
+        except self.DoesNotExist:
+            print('Hood already exists')
+            
+    def update_count(self, new_count):
+        try:
+            self.occupants_count = new_count
+            self.save()
+            return self
+        
+        except self.DoesNotExist:
+            print('Count already exists')
+
+    @classmethod
+    def search_by_id(cls, id):
+        hood = Neighbourhood.objects.get(id = id)
+        return hood
+    
     
     
 class Business(models.Model):
