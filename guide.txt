@@ -1,0 +1,4 @@
+install all the dependencies in the requirements file.
+create a database
+In settings change the cloudinary section and add your credentials.
+For your db use a .env file
