@@ -152,7 +152,10 @@ django_heroku.settings(locals())
 
 # adding config
 cloudinary.config( 
-  cloud_name = "your-cloudinary-name", 
-  api_key = "your-api-key", 
-  api_secret = "your-api-secret", 
+  cloud_name = "ddtmsdlip", 
+  api_key = "356757256393764", 
+  api_secret = "V-68rzwrl7fFATIiLhanN9z8zts" 
 )
+
+# Whitenoise Settings
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
