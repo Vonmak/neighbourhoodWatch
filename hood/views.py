@@ -4,7 +4,7 @@ from .forms import *
 
 # Create your views here.
 def index(request):
-    return HttpResponse('for status')
+    return render(request, 'index.html')
 
 def admin_log(request):
     form=AdminForm
@@ -31,3 +31,14 @@ def admin(request):
             form.save()
         return redirect(index)
     return render(request, 'admin.html',locals())
+
+def hood(request):
+    form= HoodForm
+    if request.method == 'POST':
+        form= HoodForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect(index)
+        else:
+            form=HoodForm()
+    return render(request, 'hood.html', locals())

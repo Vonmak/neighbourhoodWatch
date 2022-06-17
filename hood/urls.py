@@ -5,5 +5,6 @@ urlpatterns=[
     path('',index),
     path('logs/',admin_log),
     path('adminreg/',admin),
+    path('hood/',hood)
     
 ]
