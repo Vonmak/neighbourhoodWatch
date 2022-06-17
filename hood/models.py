@@ -1,66 +1,38 @@
 from django.db import models
 from cloudinary.models import CloudinaryField
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 # Create your models here.
 class Admin(models.Model):
     name = models.CharField(max_length=30)
     email = models.EmailField(max_length=30)
     pic = CloudinaryField('image')
-    house_number = models.IntegerField(default=None)
-    phone = models.IntegerField(null=False, blank=False, unique=True)
+    house_number = models.IntegerField(default=1)
+    phone = models.IntegerField(null=True, blank=True, unique=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="admin")
     
     def __str__(self):
         return f'{self.name} Admin'
+    
+    @receiver(post_save, sender=User)
+    def update_user_admin(sender, instance, created, **kwargs):
+        if created:
+            Admin.objects.create(user=instance)
+        instance.admin.save()
     
     def save_admin(self):
         self.save()
         
     def delete_admin(self):
         self.delete()
-     
     
-
-class Policedept(models.Model):
-    name = models.CharField(max_length=30)
-    email = models.EmailField(max_length=30)
-    contact = models.IntegerField(null=False, blank=False)
-    admin = models.ForeignKey(Admin, null=True, blank=True, related_name='policedept',on_delete=models.CASCADE)
-    
-    def __str__(self):
-        return f'{self.name} Policedept'
-    
-    def save_police(self):
-        self.save()
-        
-    def delete_police(self):
-        self.delete()
-     
-    
-    
-class Healthdept(models.Model):
-    name = models.CharField(max_length=30)
-    email = models.EmailField(max_length=30)
-    contact = models.IntegerField(null=False, blank=False)
-    admin = models.ForeignKey(Admin, null=True, blank=True, related_name='healthdept',on_delete=models.CASCADE)
-    
-    def __str__(self):
-        return f'{self.name} Healthdept'
-    
-    def save_health(self):
-        self.save()
-        
-    def delete_health(self):
-        self.delete()
-     
-
 class Neighbourhood(models.Model):
     name = models.CharField(max_length=30)
     location = models.CharField(max_length=50)
     occupants_count = models.IntegerField(default=None)
-    admin = models.ForeignKey(Admin, null=True, blank=True, related_name='neighbourhood',on_delete=models.CASCADE)
-    policedept = models.ForeignKey(Policedept, null=True, blank=True, related_name='neighbourhood',on_delete=models.CASCADE)
-    healthdept = models.ForeignKey(Healthdept, null=True, blank=True, related_name='neighbourhood',on_delete=models.CASCADE)
-    
+    admin = models.OneToOneField(Admin, null=True, blank=True, related_name='neighbourhood',on_delete=models.DO_NOTHING)
     def __str__(self):
         return f'{self.name} Neighbourhood'
     
@@ -102,3 +74,38 @@ class Business(models.Model):
     
     def __str__(self):
         return f'{self.name} Business'
+    
+    
+class Policedept(models.Model):
+    name = models.CharField(max_length=30)
+    email = models.EmailField(max_length=30)
+    contact = models.IntegerField(null=False, blank=False)
+    neighbourhood = models.ForeignKey(Neighbourhood, default=None, on_delete=models.CASCADE, related_name='policedept')
+    
+    
+    def __str__(self):
+        return f'{self.name} Policedept'
+    
+    def save_police(self):
+        self.save()
+        
+    def delete_police(self):
+        self.delete()
+     
+    
+    
+class Healthdept(models.Model):
+    name = models.CharField(max_length=30)
+    email = models.EmailField(max_length=30)
+    contact = models.IntegerField(null=False, blank=False)
+    neighbourhood = models.ForeignKey(Neighbourhood, default=None, on_delete=models.CASCADE, related_name='healthdept')
+    
+    def __str__(self):
+        return f'{self.name} Healthdept'
+    
+    def save_health(self):
+        self.save()
+        
+    def delete_health(self):
+        self.delete()
+     
