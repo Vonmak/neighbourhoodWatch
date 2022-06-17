@@ -1,12 +1,16 @@
 from django.db import models
 from cloudinary.models import CloudinaryField
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 # Create your models here.
+class User(AbstractUser):
+    is_profile = models.BooleanField('Is profile',default=False)
+    is_admin = models.BooleanField('Is admin',default=False)
+    
+
 class Admin(models.Model):
-    name = models.CharField(max_length=30)
     email = models.EmailField(max_length=30)
     pic = CloudinaryField('image')
     house_number = models.IntegerField(default=1)
@@ -14,17 +18,20 @@ class Admin(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="admin")
     
     def __str__(self):
-        return f'{self.name} Admin'
+        return f'{self.user.username} Admin'
     
     @receiver(post_save, sender=User)
-    def update_user_admin(sender, instance, created, **kwargs):
-        if created:
-            Admin.objects.create(user=instance)
-        instance.admin.save()
-    
-    def save_admin(self):
-        self.save()
-        
+    def update_user(sender, instance, created, **kwargs):
+        if instance.is_admin:
+           Admin.objects.get_or_create(user = instance)
+            
+
+    @receiver(post_save, sender=User)
+    def save_user(sender, instance, **kwargs):
+        if instance.is_admin:
+            instance.admin.save()
+            
+            
     def delete_admin(self):
         self.delete()
     
@@ -33,6 +40,9 @@ class Neighbourhood(models.Model):
     location = models.CharField(max_length=50)
     occupants_count = models.IntegerField(default=None)
     admin = models.OneToOneField(Admin, null=True, blank=True, related_name='neighbourhood',on_delete=models.DO_NOTHING)
+    health = models.IntegerField(null=True, blank=True)
+    police = models.IntegerField(null=True, blank=True)
+    
     def __str__(self):
         return f'{self.name} Neighbourhood'
     
@@ -76,36 +86,30 @@ class Business(models.Model):
         return f'{self.name} Business'
     
     
-class Policedept(models.Model):
-    name = models.CharField(max_length=30)
+
+class Profile(models.Model):
     email = models.EmailField(max_length=30)
-    contact = models.IntegerField(null=False, blank=False)
-    neighbourhood = models.ForeignKey(Neighbourhood, default=None, on_delete=models.CASCADE, related_name='policedept')
+    phone = models.IntegerField(null=True, blank=True, unique=True)
+    pic = CloudinaryField('image')
+    house_number = models.IntegerField(default=0)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile")
+    hood = models.ForeignKey(Neighbourhood, null=True, blank=True, related_name='members',on_delete=models.DO_NOTHING)
     
     
     def __str__(self):
-        return f'{self.name} Policedept'
+        return f'{self.user.username} Profile'
     
-    def save_police(self):
-        self.save()
-        
-    def delete_police(self):
-        self.delete()
+    @receiver(post_save, sender=User)
+    def update_user(sender, instance, created, **kwargs):
+        if instance.is_profile:
+            Profile.objects.get_or_create(user = instance)
+
+
+    @receiver(post_save, sender=User)
+    def save_user(sender, instance, **kwargs):
+        if instance.is_profile:
+            instance.profile.save()
      
-    
-    
-class Healthdept(models.Model):
-    name = models.CharField(max_length=30)
-    email = models.EmailField(max_length=30)
-    contact = models.IntegerField(null=False, blank=False)
-    neighbourhood = models.ForeignKey(Neighbourhood, default=None, on_delete=models.CASCADE, related_name='healthdept')
-    
-    def __str__(self):
-        return f'{self.name} Healthdept'
-    
-    def save_health(self):
-        self.save()
-        
-    def delete_health(self):
+    def delete_profile(self):
         self.delete()
-     
+        
