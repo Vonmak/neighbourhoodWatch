@@ -13,3 +13,8 @@ class AdminForm(forms.ModelForm):
     class Meta:
         model= Admin
         fields= '__all__'
+        
+class HoodForm(forms.ModelForm):
+    class Meta:
+        model= Neighbourhood
+        fields= '__all__'
