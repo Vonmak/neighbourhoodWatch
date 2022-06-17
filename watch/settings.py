@@ -50,6 +50,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 ]
 
+AUTH_USER_MODEL = 'hood.User'
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -151,11 +153,21 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 django_heroku.settings(locals())
 
 # adding config
+# cloudinary.config( 
+#   cloud_name = config("cloud_name"), 
+#   api_key = config("api_key"), 
+#   api_secret = config("api_secret"),
+# )
 cloudinary.config( 
-  cloud_name = config("cloud_name"), 
-  api_key = config("api_key"), 
-  api_secret = config("api_secret"),
+cloud_name = "ddtmsdlip", 
+api_key = "356757256393764", 
+api_secret = "V-68rzwrl7fFATIiLhanN9z8zts" 
 )
 
 # Whitenoise Settings
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# AUTHENTICATION_BACKENDS=[
+#     'django.contrib.auth.backends.ModelBackend',
+#     'hood.customAuth.EmailAuth'
+# ]
