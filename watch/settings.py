@@ -152,9 +152,9 @@ django_heroku.settings(locals())
 
 # adding config
 cloudinary.config( 
-  cloud_name = "ddtmsdlip", 
-  api_key = "356757256393764", 
-  api_secret = "V-68rzwrl7fFATIiLhanN9z8zts" 
+  cloud_name = config("cloud_name"), 
+  api_key = config("api_key"), 
+  api_secret = config("api_secret"),
 )
 
 # Whitenoise Settings
