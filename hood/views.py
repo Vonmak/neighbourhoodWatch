@@ -1,6 +1,33 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import render,redirect
+from django.http import HttpResponse, HttpResponseRedirect
+from .forms import *
 
 # Create your views here.
 def index(request):
     return HttpResponse('for status')
+
+def admin_log(request):
+    form=AdminForm
+    if request.method=='POST':
+        form = AdminForm(request.POST, request.FILES)
+        if form.is_valid():
+            admin=form.save()
+            admin.save()
+            print(admin)
+            return HttpResponse('success') 
+    else:
+        form=AdminForm()
+    return render(request, 'adminpro.html',locals())
+        
+def admin(request):
+    form = RegistrationForm
+    if request.method == 'POST':
+        form = RegistrationForm(request.POST)
+        if form.is_valid():
+            user =  form.save()
+            user.refresh_from_db()
+            user.admin.email = form.cleaned_data.get('email')
+            user.save()
+            form.save()
+        return redirect(index)
+    return render(request, 'admin.html',locals())
