@@ -6,8 +6,8 @@ from django.dispatch import receiver
 
 # Create your models here.
 class User(AbstractUser):
-    is_profile = models.BooleanField('Is profile',default=False)
-    is_admin = models.BooleanField('Is admin',default=False)
+    is_profile = models.BooleanField('Member',default=False)
+    is_admin = models.BooleanField('Admin',default=False)
     
 
 class Admin(models.Model):
