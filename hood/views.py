@@ -78,6 +78,19 @@ def login_user(request):
     
     return render(request,'login.html',locals())
 
-
-def post(request):
-    return render (request,'post.html')
+# adding a new post
+def save_post(request):
+    if request.method == 'POST':
+        post_form = PostForm(request.POST)
+        
+        if post_form.is_valid():
+            
+            obj = post_form.save(commit=False)
+            obj.user = request.user
+            profile = Profile.objects.get(user=request.user)
+            obj.profile = profile
+            
+            obj.save()
+            
+            return HttpResponse('formis valid')
+    return render (request,'save_post.html')
