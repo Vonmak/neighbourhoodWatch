@@ -1,0 +1,5 @@
+{% extends 'base.html' %} {% block content %} {% if hoods %}
+<div>{% for hood in hoods %} <a href="/hood/{{hood.id}}">{{hood.name}}</a>  {% endfor %}</div>
+{% endif %} {% if profiles %} {% for member in profiles %}
+{{member.user.username}} {{member.house_number}} {{member.hood}}{% endfor %} {% endif %} 
+{%endblock%}
