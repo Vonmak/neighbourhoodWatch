@@ -85,22 +85,22 @@ def logout_user(request):
     logout(request)
     return redirect(home)
 
-# def hood(request, id):
-#     hood = Neighbourhood.objects.get(id=id)
-#     biz=Business.filter_by_hood(hood.id)
-#     members=Profile.filter_by_hood(hood.id)
-#     posts=Post.filter_by_hood(hood.id)
-#     form = PostForm()
-#     if request.method=='POST':
-#         form = PostForm(request.POST, request.FILES)
-#         print(form)
-#         if form.is_valid():
-#             h = form.save(commit=False)
-#             h.user = request.user
-#             h.hood = hood
-#             h.save()
-#             return HttpResponseRedirect(request.path_info)
-#     return render(request, 'hood.html', locals())
+def hood(request, id):
+    hood = Neighbourhood.objects.get(id=id)
+    biz=Business.filter_by_hood(hood.id)
+    members=Profile.filter_by_hood(hood.id)
+    posts=Post.filter_by_hood(hood.id)
+    form = PostForm()
+    if request.method=='POST':
+        form = PostForm(request.POST, request.FILES)
+        print(form)
+        if form.is_valid():
+            h = form.save(commit=False)
+            h.user = request.user
+            h.hood = hood
+            h.save()
+            return HttpResponseRedirect(request.path_info)
+    return render(request, 'hood.html', locals())
 
 # def biz(request, name):
 #     biz = Business.objects.get(name=name)
