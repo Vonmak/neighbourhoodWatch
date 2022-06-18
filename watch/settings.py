@@ -101,7 +101,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'hood',
-        'USER': 'haimy',
+        'USER': 'code_world',
         'PASSWORD': 'haimy3',
         'HOST' : 'localhost',
         
