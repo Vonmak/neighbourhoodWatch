@@ -1,0 +1,34 @@
+{% extends 'base.html' %}{% load static %}{%block content%}
+<div class="container main" style="background-image:url({%static 'images/projects.jpeg'%})">
+  <div class="col-md-4"></div>
+  <div class="card col-md-4 register">
+    <h4 class='text-info'>REGISTER</h4>
+    <form action="" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="name" class="form-label"
+          >{{form.name.label}}:</label
+        ><br />
+        {{form.name}}
+      </div>
+      <div class="form-group">
+        <label for="location" class="form-label"
+          >{{form.location.label}}:</label
+        ><br />
+        {{form.location}}
+      </div>
+      <div class="form-group">
+        <label for="occupants_count" class="form-label">{{form.occupants_count.label}}:</label
+        ><br />
+        {{form.occupants_count}}
+      </div>
+
+      <input class="btn btn-outline-info" type="submit" value="add">
+    </form>
+
+    <p>Have an Account?<a href="/login" class="text-info">Sign In Here!</a></p>
+  </div>
+  <div class="col-md-4"></div>
+</div>
+
+{%endblock%}

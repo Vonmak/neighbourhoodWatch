@@ -15,7 +15,7 @@ import os
 # import django_heroku
 # import dj_database_url
 # from decouple import config,Csv
-# import cloudinary
+import cloudinary
 # import cloudinary.uploader
 # import cloudinary.api
 
@@ -49,6 +49,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+
+AUTH_USER_MODEL = 'hood.User'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -160,9 +162,24 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # # Configure Django App for Heroku.
 # django_heroku.settings(locals())
 
-# # adding config
+
+# adding config
 # cloudinary.config( 
-#   cloud_name = "your-cloudinary-name", 
-#   api_key = "your-api-key", 
-#   api_secret = "your-api-secret", 
+#   cloud_name = config("cloud_name"), 
+#   api_key = config("api_key"), 
+#   api_secret = config("api_secret"),
 # )
+cloudinary.config( 
+cloud_name = "ddtmsdlip", 
+api_key = "356757256393764", 
+api_secret = "V-68rzwrl7fFATIiLhanN9z8zts" 
+)
+
+# Whitenoise Settings
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# AUTHENTICATION_BACKENDS=[
+#     'django.contrib.auth.backends.ModelBackend',
+#     'hood.customAuth.EmailAuth'
+# ]
+
