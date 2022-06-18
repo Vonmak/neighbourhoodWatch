@@ -3,9 +3,12 @@ from .views import *
 
 urlpatterns=[
     path('',index),
+    path('home/',home),
     path('logs/',admin_log),
     path('member/',member),
-    path('hood/',hood),
-    # path('biz/',biz),
+    path('hood/<id>',hood),
+    path('biz/<name>',biz),
     path('login/',login_user),
+    path('logout',logout_user),
+    # path('<id>/post/',post, name='post'),
 ]
