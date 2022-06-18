@@ -102,15 +102,15 @@ def hood(request, id):
             return HttpResponseRedirect(request.path_info)
     return render(request, 'hood.html', locals())
 
-# def biz(request, name):
-#     biz = Business.objects.get(name=name)
-#     form= BusinessForm
-#     if request.method == 'POST':
-#         form=BusinessForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             return redirect(index)
-#         else:
-#             form=BusinessForm()
-#     return render(request, 'biz.html', locals())
+def biz(request, name):
+    biz = Business.objects.get(name=name)
+    form= BusinessForm
+    if request.method == 'POST':
+        form=BusinessForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect(index)
+        else:
+            form=BusinessForm()
+    return render(request, 'biz.html', locals())
 
