@@ -37,3 +37,9 @@ class BusinessForm(forms.ModelForm):
 class LoginForm(forms.Form):
     username=forms.CharField(max_length=50)
     password=forms.CharField(max_length=20, widget=forms.PasswordInput)
+
+#post form
+class PostForm(forms.form):
+    class Meta:
+        models = Post
+        fields = '__al__'

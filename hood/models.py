@@ -113,3 +113,13 @@ class Profile(models.Model):
     def delete_profile(self):
         self.delete()
         
+        
+#post model
+class Post(models.Model):
+    admin = models.OneToOneField(Admin, null=True, blank=True, related_name='post',on_delete=models.DO_NOTHING)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="admin")
+    post = models.CharField(max_length=500)
+    pic = CloudinaryField('image')
+    
+    def __str__(self):
+        return f'{self.name} Post'
