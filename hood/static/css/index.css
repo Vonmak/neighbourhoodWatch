@@ -1,0 +1,105 @@
+/* .main {} */
+
+.hero {
+    height: 94vh;
+    border: 1px solid rgb(255, 0, 0);
+    margin-bottom: 30px;
+}
+
+.index {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    background-color: #cccccc;
+    height: 94vh;
+    position: absolute;
+    z-index: 1;
+    filter: brightness(50%);
+}
+
+.hero2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: #fff;
+    position: relative;
+    z-index: 2;
+    border: 1px solid rgb(16, 237, 35);
+}
+
+.hero1 {
+    position: relative;
+    z-index: 2;
+    border: 1px solid rgb(0, 8, 255);
+}
+
+.hero3 {
+    position: relative;
+    z-index: 2;
+    border: 1px solid rgb(0, 0, 0);
+}
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: relative;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    background-color: #023047;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+    z-index: 1;
+}
+
+a:hover {
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: relative;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+    /* z-index: 2; */
+}
+
+#main {
+    transition: margin-left .5s;
+    padding: 16px;
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {
+        padding-top: 15px;
+    }
+    .sidenav a {
+        font-size: 18px;
+    }
+}
+
+
+/* Navbar */
+
+#navbar {
+    background-color: #023047;
+}
+
+.navbar {
+    position: relative;
+    top: 0;
+    width: 100%;
+    z-index: 2;
+}
