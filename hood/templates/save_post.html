@@ -1,16 +1,23 @@
 
 
-<h1>posts</h1>
+<h1 class="post">posts</h1>
 
 
 <form mathod="post " enctype="mutlipart/form-data">
 {% csrf_token %}
  <div class="form-group">
-    <label for="Textarea">Example textarea</label>
+    <label for="Textarea">textarea</label>
     <textarea class="form-control" id="Textarea" rows="3"></textarea>
   </div>
   <div class="form-group">
-    <label for="ControlFile1">Example file input</label>
+    <label for="ControlFile1">input</label>
     <input type="file" class="form-control-file" id="ControlFile1">
   </div>
+  <button type="submit">Submit</button>
 </form>
+
+
+
+
+
+
