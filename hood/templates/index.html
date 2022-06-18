@@ -1,1 +1,169 @@
-coool stuff coming soon
+{%load static %} {% load bootstrap5 %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>The Hood</title>
+    <!-- CSS only -->
+    {%block styles%} {%bootstrap_css%}
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Akronim&family=Creepster&family=Diplomata+SC&family=Roboto:wght@300;400;500;700;900&family=Rubik+Moonrocks&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{% static 'css/index.css' %}" />
+    {%endblock%} {%block scripts%} {%bootstrap_javascript%}
+    <script src="{% static 'js/script.js' %}" type="text/javascript"></script>
+    {%endblock%}
+  </head>
+  <body class="body">
+    {% block content %}
+    <nav class="navbar navbar-inverse" style="height: 10vh" id="navbar">
+      <div class="container-fluid text-white">
+        <div class="navbar-header">
+          <ul class="list-inline">
+            <li class="list-inline-item">
+              <span style="font-size: 30px; cursor: pointer" onclick="openNav()"
+                >&#9776; Home</span
+              >
+              <div id="mySidenav" class="sidenav">
+                <a
+                  href="javascript:void(0)"
+                  class="closebtn"
+                  onclick="closeNav()"
+                  >&times;</a
+                >
+                <a href="#">&#9776;Home</a>
+                <a href="#about">About</a>
+                <a href="#services">Services</a>
+                <a href="#">Clients</a>
+                <a href="#">Contact</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="navbar-end">
+          <ul class="list-inline">
+            {% if user.is_authenticated %}
+            <li class="list-inline-item">
+              <div class="dropdown">
+                <a
+                  class="navbar-brand text-white dropdown-toggle"
+                  data-bs-toggle="dropdown"
+                  href=""
+                  >{{user.username | title}} {% if user.profile.pic %}
+                  <img
+                    src="{{user.profile.pic.url}}"
+                    class="img-fluid rounded-pill pic"
+                    alt="image"
+                  />
+                  {% else %}
+                  <img
+                    class="img-fluid rounded-pill pic"
+                    src="{% static 'images/starating.jpeg'%}"
+                    alt="image"
+                  />{% endif %}
+                </a>
+
+                <ul class="dropdown-menu">
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      href="/profile/{{user.profile.user.id}}"
+                      >My Profile</a
+                    >
+                  </li>
+
+                  <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                </ul>
+              </div>
+            </li>
+            {% else %}
+            <li class="list-inline-item">
+              <a class="navbar-brand text-white" href="/register">Register</a>
+              <a class="navbar-brand text-white" href="/login">Login</a>
+            </li>
+
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container-fluid main">
+      <div class="row hero">
+        <img src="{%static 'images/hoodhome.jpeg'%}" alt="" class="img-responsive index">
+        <div class="col-md-3 hero1"></div>
+        <div class="col-md-6 hero2">
+          <h1 class="page-header head">THE Hood Watch</h1>
+          <h4>Welcome to The Hood!!</h4>
+          <a href="/login"class="btn btn-primary btn-sm">Get Started</a>
+        </div>
+        <div class="col-md-3 hero3">vbfhjdkn.ksdfb </div>
+      </div>
+      <div class="row about text-center" id="about">
+        <h4>About</h4>
+
+        <p class="text-center">
+          If you are like me, You really don't know what is happening in your
+          neighborhood most of the time. <br />
+          What if an important meeting happens, theft or even death wouldn't you
+          like to know about it.
+        </p>
+      </div>
+      <div class="row services" id="services">
+        <h4>Services</h4>
+
+        <div class="col-md-3">
+          Hood Watch
+          <div class="card"><p>The Hood is the App for the future.</p></div>
+        </div>
+
+        <div class="col-md-3">
+          Businesses
+          <div class="card">
+            <p>We offer features like business advertisements.</p>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          Posts
+          <div class="card">
+            <p>Hood Memmbers can post there reviews to be seen.</p>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          Contacts
+          <div class="card">
+            You can find the health Department, Police Department, Admin and any
+            other essential contact in this application.
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer
+      class="container-fluid bg bg-dark text-white text-center"
+      style="height: 5vh"
+    >
+      <p class="list-inline-item"><small>Copyright &copy;2022, Rades</small></p>
+      <p class="list-inline-item">
+        Our Socials:
+        <a class="text-white" href="https://github.com/Vonmak"
+          ><i class="fa-brands fa-github"></i
+        ></a>
+        <a class="text-white" href="https://twitter.com/SniffRades"
+          ><i class="fa-brands fa-twitter"></i
+        ></a>
+        <a class="text-white" href="https://linkedin.com/in/victorondari"
+          ><i class="fa-brands fa-linkedin"></i
+        ></a>
+      </p>
+    </footer>
+    {%endblock%}
+  </body>
+</html>
