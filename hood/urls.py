@@ -13,6 +13,6 @@ urlpatterns=[
     path('hood/',hood),
     # path('biz/',biz),
     path('login/',login_user),
-    # path("",post, name="post"),
+    path("post/",post, name="post"),
 
 ]

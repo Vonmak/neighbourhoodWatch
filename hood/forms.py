@@ -39,7 +39,7 @@ class LoginForm(forms.Form):
     password=forms.CharField(max_length=20, widget=forms.PasswordInput)
 
 #post form
-class PostForm(forms.form):
+class PostForm(forms.ModelForm):
     class Meta:
         models = Post
-        fields = '__al__'
+        fields = ['post','pic']

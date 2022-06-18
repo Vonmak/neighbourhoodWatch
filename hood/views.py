@@ -78,3 +78,6 @@ def login_user(request):
     
     return render(request,'login.html',locals())
 
+
+def post(request):
+    return render (request,'post.html')
