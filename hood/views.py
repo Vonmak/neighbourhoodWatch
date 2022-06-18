@@ -1,11 +1,26 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from .forms import *
 from django.contrib.auth import authenticate, login, logout
 
 # Create your views here.
 def index(request):
-    return render(request, 'index.html')
+    return render(request, 'index.html',locals())
+
+def home(request):
+    hoods=Neighbourhood.objects.all()
+    print(hoods)
+    business=Business.objects.all()
+    profiles=Profile.objects.all()
+    form= HoodForm
+    if request.method == 'POST':
+        form= HoodForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect(index)
+        else:
+            form=HoodForm()
+    return render(request, 'home.html',locals())
 
 def admin_log(request):
     user_form=UserForm
@@ -21,7 +36,7 @@ def admin_log(request):
             user.admin.phone = admin_form.cleaned_data.get('phone')
             user.admin.house_number = admin_form.cleaned_data.get('house_number')
             user.admin.save()
-            return HttpResponse('success') 
+            return HttpResponse(home) 
     else:
         user_form=UserForm()
         admin_form=AdminForm()
@@ -41,24 +56,12 @@ def member(request):
             user.profile.phone = profile_form.cleaned_data.get('phone')
             user.profile.house_number = profile_form.cleaned_data.get('house_number')
             user.profile.save()
-            return HttpResponse('success') 
+            return redirect(home) 
     else:
         user_form=UserForm()
         profile_form=ProfileForm()
     return render(request, 'profile.html',locals())
-        
-
-def hood(request):
-    form= HoodForm
-    if request.method == 'POST':
-        form= HoodForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect(index)
-        else:
-            form=HoodForm()
-    return render(request, 'hood.html', locals())
-
+    
 def login_user(request):
     form=LoginForm()
     if request.method=='POST':
@@ -69,10 +72,45 @@ def login_user(request):
             user=authenticate(request,username=username,password=password)
             if user is not None:
                 login(request,user)
-                return redirect(index)
+                return redirect(home)
             else:
                 return HttpResponse('Such a user does not exist')
         else:
             return HttpResponse("Form is not Valid")
     
     return render(request,'login.html',locals())
+
+        
+def logout_user(request):
+    logout(request)
+    return redirect(home)
+
+# def hood(request, id):
+#     hood = Neighbourhood.objects.get(id=id)
+#     biz=Business.filter_by_hood(hood.id)
+#     members=Profile.filter_by_hood(hood.id)
+#     posts=Post.filter_by_hood(hood.id)
+#     form = PostForm()
+#     if request.method=='POST':
+#         form = PostForm(request.POST, request.FILES)
+#         print(form)
+#         if form.is_valid():
+#             h = form.save(commit=False)
+#             h.user = request.user
+#             h.hood = hood
+#             h.save()
+#             return HttpResponseRedirect(request.path_info)
+#     return render(request, 'hood.html', locals())
+
+# def biz(request, name):
+#     biz = Business.objects.get(name=name)
+#     form= BusinessForm
+#     if request.method == 'POST':
+#         form=BusinessForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             return redirect(index)
+#         else:
+#             form=BusinessForm()
+#     return render(request, 'biz.html', locals())
+
