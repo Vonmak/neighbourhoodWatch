@@ -116,7 +116,7 @@ class Profile(models.Model):
         
 #post model
 class Post(models.Model):
-    admin = models.OneToOneField(Admin, null=True, blank=True, related_name='post',on_delete=models.DO_NOTHING)
+    # admin = models.OneToOneField(Admin, null=True, blank=True, related_name='post',on_delete=models.DO_NOTHING)
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="post")
     post = models.CharField(max_length=500)
     pic = CloudinaryField('image')
