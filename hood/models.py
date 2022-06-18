@@ -1,3 +1,4 @@
+from datetime import date
 from django.db import models
 from cloudinary.models import CloudinaryField
 from django.contrib.auth.models import AbstractUser
@@ -16,6 +17,7 @@ class Admin(models.Model):
     house_number = models.IntegerField(default=1)
     phone = models.IntegerField(null=True, blank=True, unique=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="admin")
+    date = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
         return f'{self.user.username} Admin'
@@ -42,6 +44,7 @@ class Neighbourhood(models.Model):
     admin = models.OneToOneField(Admin, null=True, blank=True, related_name='neighbourhood',on_delete=models.DO_NOTHING)
     health = models.IntegerField(null=True, blank=True)
     police = models.IntegerField(null=True, blank=True)
+    date = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
         return f'{self.name} Neighbourhood'
@@ -70,31 +73,20 @@ class Neighbourhood(models.Model):
             print('Count already exists')
 
     @classmethod
-    def search_by_id(cls, id):
+    def get_by_id(cls, id):
         hood = Neighbourhood.objects.get(id = id)
         return hood
     
-    
-    
-class Business(models.Model):
-    name = models.CharField(max_length=30)
-    email = models.EmailField(max_length=30)
-    pic = CloudinaryField('image')
-    neighbourhood = models.ForeignKey(Neighbourhood, on_delete=models.CASCADE, related_name='business')
-    
-    def __str__(self):
-        return f'{self.name} Business'
-    
-    
-
+   
+   
 class Profile(models.Model):
     email = models.EmailField(max_length=30)
     phone = models.IntegerField(null=True, blank=True, unique=True)
     pic = CloudinaryField('image')
     house_number = models.IntegerField(default=0)
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile")
-    hood = models.ForeignKey(Neighbourhood, null=True, blank=True, related_name='members',on_delete=models.DO_NOTHING)
-    
+    hood = models.ForeignKey(Neighbourhood, null=True, blank=True, related_name='members',on_delete=models.CASCADE)
+    date = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
         return f'{self.user.username} Profile'
@@ -112,4 +104,50 @@ class Profile(models.Model):
      
     def delete_profile(self):
         self.delete()
-        
+    
+    @classmethod
+    def filter_by_hood(cls, hood):
+        profiles = cls.objects.filter(hood__id__icontains=hood).all()
+        return profiles
+     
+   
+    
+    
+class Business(models.Model):
+    name = models.CharField(max_length=30)
+    email = models.EmailField(max_length=30)
+    pic = CloudinaryField('image')
+    hood = models.ForeignKey(Neighbourhood, on_delete=models.CASCADE, related_name='business')
+    user= models.ForeignKey(User, on_delete=models.CASCADE, related_name="biz")
+    date = models.DateTimeField(auto_now_add=True)
+    
+    
+    def __str__(self):
+        return f'{self.name} Business'
+    
+    @classmethod
+    def get_by_id(cls, id):
+        name = cls.objects.get(id = id)
+        return name
+    
+    @classmethod
+    def filter_by_hood(cls, hood):
+        businesses = cls.objects.filter(hood__id__icontains=hood).all()
+        return businesses
+     
+    
+class Post(models.Model):
+    title = models.CharField(max_length=120, null=True)
+    post = models.TextField()
+    date = models.DateTimeField(auto_now_add=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='post')
+    hood = models.ForeignKey(Neighbourhood, on_delete=models.CASCADE, related_name='post')
+
+    def __str__(self):
+        return f'{self.title} Post'
+    
+    @classmethod
+    def filter_by_hood(cls, hood):
+        posts = cls.objects.filter(hood__id__icontains=hood).all()
+        return posts
+     
