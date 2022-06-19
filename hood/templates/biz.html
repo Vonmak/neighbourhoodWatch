@@ -2,7 +2,7 @@
 <div class="container main" style="background-image:url({%static 'images/projects.jpeg'%})">
   <div class="col-md-4"></div>
   <div class="card col-md-4 register">
-    <h4 class='text-info'>REGISTER</h4>
+    <h4 class='text-info'>Add Business</h4>
     <form action="" method="post" enctype="multipart/form-data">
       {% csrf_token %}
       <div class="form-group">
@@ -24,8 +24,6 @@
 
       <input class="btn btn-outline-info" type="submit" value="add">
     </form>
-
-    <p>Have an Account?<a href="/login" class="text-info">Sign In Here!</a></p>
   </div>
   <div class="col-md-4"></div>
 </div>

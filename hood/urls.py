@@ -8,13 +8,13 @@ from django.conf.urls.static import static
 
 urlpatterns=[
     path('',index),
+    path('home/',home),
     path('logs/',admin_log),
     path('member/',member),
-    path('hood/',hood),
-    # path('biz/',biz),
+    path('hood/<id>',hood),
+    path('biz/<name>',biz),
     path('login/',login_user),
-    
-    #post url
-    path("save_post/",save_post, name=" save_post"),
-
+    path('logout',logout_user),
+    path('profile/<id>',memberprof, name='profile'),
+    path('adminprofile/<id>',adminprof, name='admin'),
 ]

@@ -12,12 +12,12 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 import os
-# import django_heroku
-# import dj_database_url
-# from decouple import config,Csv
+import django_heroku
+import dj_database_url
+from decouple import config,Csv
 import cloudinary
-# import cloudinary.uploader
-# import cloudinary.api
+import cloudinary.uploader
+import cloudinary.api
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -31,8 +31,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-!dqmf8k6lt25s%9p#o$9e_tpb9x4%js!l^3&9p=zyeboyp6whv'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = config('DEBUG', default=False, cast=bool)
-DEBUG = True
+DEBUG = config('DEBUG', default=False, cast=bool)
+
 ALLOWED_HOSTS = []
 
 
@@ -40,7 +40,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'hood',
-    # 'bootstrap5',
+    'bootstrap5',
     'cloudinary',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -86,17 +86,6 @@ WSGI_APPLICATION = 'watch.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': config('DB_NAME'),
-#         'USER': config('DB_USER'),
-#         'PASSWORD': config('DB_PASSWORD'),
-#         'HOST': config('DB_HOST'),
-#         'PORT': '5432',
-#     }
-       
-# }
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -105,10 +94,16 @@ DATABASES = {
         'PASSWORD': 'haimy3',
         'HOST' : 'localhost',
         
+        # 'NAME': config('DB_NAME'),
+        # 'USER': config('DB_USER'),
+        # 'PASSWORD': config('DB_PASSWORD'),
+        # 'HOST': config('DB_HOST'),
+        # 'PORT': '5432',
     }
+       
 }
-# db_from_env = dj_database_url.config(conn_max_age=500)
-# DATABASES['default'].update(db_from_env)
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
 
 
 
@@ -159,9 +154,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# # Configure Django App for Heroku.
-# django_heroku.settings(locals())
-
+# Configure Django App for Heroku.
+django_heroku.settings(locals())
 
 # adding config
 # cloudinary.config( 
@@ -182,4 +176,3 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 #     'django.contrib.auth.backends.ModelBackend',
 #     'hood.customAuth.EmailAuth'
 # ]
-

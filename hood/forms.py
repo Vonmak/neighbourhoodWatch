@@ -16,12 +16,12 @@ class UserForm(UserCreationForm):
 class AdminForm(forms.ModelForm):
     class Meta:
         model= Admin
-        fields= ['house_number','phone',]
+        fields= ['email','pic','house_number','phone']
         
 class ProfileForm(forms.ModelForm):
     class Meta:
         model= Profile
-        fields= ['house_number','phone',]
+        fields= ['email','pic','hood','house_number','phone']
    
         
 class HoodForm(forms.ModelForm):
@@ -38,8 +38,7 @@ class LoginForm(forms.Form):
     username=forms.CharField(max_length=50)
     password=forms.CharField(max_length=20, widget=forms.PasswordInput)
 
-#post form
 class PostForm(forms.ModelForm):
     class Meta:
-        models = Post
-        fields = ['post','pic']
+        model = Post
+        fields= ['title', 'post']                                                                                           
