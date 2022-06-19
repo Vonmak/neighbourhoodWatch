@@ -3,6 +3,15 @@
     width: 40px;
 }
 
-.hero-body{
-    background-color: #f00e0e;
+.card-title{
+    color: black;
+}
+
+.card{
+    color: #01497c;
+}
+
+.container-main{
+   background-image: url("images.jpeg");
+   color:white;
 }

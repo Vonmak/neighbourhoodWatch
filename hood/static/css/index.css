@@ -3,7 +3,6 @@
 
 .hero {
     height: 94vh;
-    border: 1px solid rgb(255, 0, 0);
     margin-bottom: 30px;
 }
 
@@ -26,19 +25,19 @@
     color: #fff;
     position: relative;
     z-index: 2;
-    border: 1px solid rgb(16, 237, 35);
+   
 }
 
 .hero1 {
     position: relative;
     z-index: 2;
-    border: 1px solid rgb(0, 8, 255);
+  
 }
 
 .hero3 {
     position: relative;
     z-index: 2;
-    border: 1px solid rgb(0, 0, 0);
+    
 }
 
 .sidenav {

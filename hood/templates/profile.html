@@ -2,15 +2,16 @@
 <div id="prof-hero">
   <div
     class="container main"
-    style="background-image: url({%static'images/projects.jpeg'%})"
+  
   >
     <div class="col-md-4"></div>
-    <div class="card col-md-4 register">
+    <div class="card col-md-4 register" id="prof-cntent">
       <h4 class="text-info">Hood Member Reg.</h4>
-      <form action="" method="post">
+      <form action="" method="post" >
         {% csrf_token %}
         <div class="form-group">
           <label for="username" class="form-label"
+          id="username"
             >{{user_form.username.label}}:</label
           ><br />
           {{user_form.username}}

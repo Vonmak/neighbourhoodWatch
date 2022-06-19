@@ -1,5 +1,4 @@
-{% load static %} 
-{% load bootstrap5 %}
+{% load static %} {% load bootstrap5 %}
 <!DOCTYPE html>
 <html>
   <head>
@@ -21,9 +20,7 @@
     {% endblock%} {% block scripts%} {% bootstrap_javascript%} {% endblock%}
   </head>
   <body class="body">
-    {% include 'navbar.html' %} 
-    {% block content %} 
-    <div class="hero-body"></div>
-    {% endblock%}
+    {% include 'navbar.html' %}
+   {% block content %}{% endblock%}
   </body>
 </html>

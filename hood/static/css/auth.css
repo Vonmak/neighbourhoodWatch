@@ -1,22 +1,55 @@
-.body{
-    background-color: brown;
-}
 
 
 #prof-hero{
-    background-color: #023047;
+     background-image: url("reg.jpg");
+  width: 90%;
+  height: 100%;
+  background-size: auto;
+  padding-top: 0.5rem;
+  color: black;
+  background-repeat: no-repeat;
+  margin-left: 3rem;
+  border-radius: 2rem;
+  align-items:center;
+  justify-items: center;
 }
 
 .log-hero{
-    /* background-color: #6c757d; */
-    background-image: url("login.jpg");
-  width: 90%;
-  height: 100vh;
+    /* background-color: #468faf; */
+  background-image: url("login.jpg");
+  width: 80%;
+  height: 70vh;
   background-size: auto;
-  background-position: center;
-  padding-top: 5rem;
-  color: aliceblue;
-  margin-left: 3rem;
+  /* background-position: center; */
+  padding-top: 3rem;
+  color: black;
   background-repeat: no-repeat;
-  border-radius: 2rem;
+  margin-left: 3rem;
+border-radius: 2rem;
+  align-items: center;
+}
+
+#register{
+    margin-left: 15rem;
+    border-radius: 2px;
+    width: fit-content;
+
+}
+
+.text-info{
+    align-items: center;
+    margin-left: 3rem;
+}
+
+#prof-content{
+   margin-left: 15rem;
+   padding: 2px;
+   /* border-color: red; */
+    border-radius: 2px;
+    width: fit-content;
+}
+
+
+#prof-hero reg-form{
+    padding: 0cm;
 }

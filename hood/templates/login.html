@@ -4,8 +4,8 @@
     class="container main"
   >
     <div class="col-md-4 two"></div>
-    <div class="card col-md-4 register">
-      <h4 class="text-info">LOGIN</h4>
+    <div class="card col-md-4 register" id="register">
+      <h4 class="text-info" id="text-infor">LOGIN</h4>
       <form action="" method="post">
         {% csrf_token %}
 
@@ -30,7 +30,7 @@
         >
       </p>
     </div>
-    <div class="col-md-4 two"></div>
+    {% comment %} <div class="col-md-4 two"></div> {% endcomment %}
   </div>
 </div>
 {% endblock%}
