@@ -9,9 +9,9 @@ def index(request):
 
 def home(request):
     hoods=Neighbourhood.objects.all()
-    print(hoods)
+    posts= Post.objects.all()
     business=Business.objects.all()
-    profiles=Profile.objects.all()
+    profiles=User.objects.all()
     form= HoodForm
     if request.method == 'POST':
         form= HoodForm(request.POST)
@@ -24,42 +24,32 @@ def home(request):
 
 def admin_log(request):
     user_form=UserForm
-    admin_form=AdminForm
     if request.method=='POST':
         user_form=UserForm(request.POST, request.FILES)
-        admin_form=AdminForm(request.POST, request.FILES)
-        if user_form.is_valid() and admin_form.is_valid():
-            user = user_form.save(commit=False)
+        if user_form.is_valid():
+            user = user_form.save()
             user.save()
-            
             user.refresh_from_db()
-            user.admin.phone = admin_form.cleaned_data.get('phone')
-            user.admin.house_number = admin_form.cleaned_data.get('house_number')
-            user.admin.save()
+            user.admin.email = user_form.cleaned_data.get('email')
+            user.save()
             return HttpResponse(home) 
     else:
         user_form=UserForm()
-        admin_form=AdminForm()
     return render(request, 'admin.html',locals())
 
 def member(request):
     user_form=UserForm
-    profile_form=ProfileForm
     if request.method=='POST':
         user_form=UserForm(request.POST, request.FILES)
-        profile_form=ProfileForm(request.POST, request.FILES)
-        if user_form.is_valid() and profile_form.is_valid():
-            user = user_form.save(commit=False)
-            user.save()
-            
+        if user_form.is_valid():
+            user = user_form.save()     
             user.refresh_from_db()
-            user.profile.phone = profile_form.cleaned_data.get('phone')
-            user.profile.house_number = profile_form.cleaned_data.get('house_number')
-            user.profile.save()
+            user.profile.email = user_form.cleaned_data.get('email')
+            user.save()
+            user_form.save()
             return redirect(home) 
     else:
         user_form=UserForm()
-        profile_form=ProfileForm()
     return render(request, 'profile.html',locals())
     
 def login_user(request):
@@ -114,3 +104,36 @@ def biz(request, name):
             form=BusinessForm()
     return render(request, 'biz.html', locals())
 
+def memberprof(request, id):  
+    user=User.objects.filter(id=id).first()
+    profile = Profile.objects.get(user=id)
+    posts = Post.filter_by_user(user.id).order_by('-date')
+    current_user = request.user
+    if request.method == 'POST':
+        pro_form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
+        if pro_form.is_valid():
+            profile =pro_form.save(commit=False)
+            profile.user = current_user
+            profile.save()
+            return redirect(index)
+    else:
+        pro_form=ProfileForm()
+        
+    return render(request,"profile/memberprof.html",locals())
+
+def adminprof(request, id):  
+    user=User.objects.filter(id=id).first()
+    admin = Admin.objects.get(user=id)
+    posts = Post.filter_by_user(user.id).order_by('-date')
+    current_user = request.user
+    if request.method == 'POST':
+        ad_form = AdminForm(request.POST, request.FILES, instance=request.user.admin)
+        if ad_form.is_valid():
+            admin =ad_form.save(commit=False)
+            admin.user = current_user
+            admin.save()
+            return redirect(index)
+    else:
+        ad_form= AdminForm()
+        
+    return render(request,"profile/adminprof.html",locals())
