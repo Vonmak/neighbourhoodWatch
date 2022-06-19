@@ -6,7 +6,7 @@
         <li class="list-inline-item">
           <a
             class="navbar-brand text-white"
-            href="/"
+            href="/home"
             style="
               font-family: 'Akronim', cursive;
               font-size: 50px;
@@ -20,7 +20,7 @@
     </div>
     <div class="navbar-end">
       <ul class="list-inline">
-        {% if user.is_authenticated %} {%if user.is_admin%}
+        {% if user.is_authenticated %}
         <li class="list-inline-item">
           <div class="dropdown">
             <a
@@ -38,10 +38,19 @@
                 class="img-fluid rounded-pill pic"
                 src="{% static 'images/starating.jpeg'%}"
                 alt="image"
-              />{% endif %}{%endif%}
+              />{% endif %}
             </a>
 
             <ul class="dropdown-menu">
+              {%if user.is_admin%}
+              <li>
+                <a
+                  class="dropdown-item"
+                  href="/adminprofile/{{user.admin.user.id}}"
+                  >My Profile</a
+                >
+              </li>
+              {% else %}
               <li>
                 <a
                   class="dropdown-item"
@@ -49,17 +58,19 @@
                   >My Profile</a
                 >
               </li>
+              {%endif%}
 
               <li><a class="dropdown-item" href="/logout">Logout</a></li>
             </ul>
           </div>
         </li>
+        {%if user.is_admin%}
         <li class="list-inline-item">
           <!-- Button to Open the Modal -->
           <a class="text-white" data-bs-toggle="modal" data-bs-target="#myModal"
-            >Edit Hood!</a
+            >Add Hood!</a
           >
-        </li>
+        </li>{%endif%}
         {% else %}
         <li class="list-inline-item">
           <a class="navbar-brand text-white" href="/register">Register</a>
