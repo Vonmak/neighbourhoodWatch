@@ -23,12 +23,16 @@ class Admin(models.Model):
         return f'{self.user.username} Admin'
          
     @receiver(post_save, sender=User)
-    def update_user(sender, instance, created, **kwargs):
-        if instance.is_admin and created:
-            Profile.objects.get_or_create(user = instance)
-        instance.admin.save()
-              
-            
+    def create_admin(sender, instance, created, dispatch_uid="admin", **kwargs):
+        if instance.is_admin:
+            if created:
+                Admin.objects.get_or_create(user = instance)            
+        
+    @receiver(post_save, sender=User)
+    def save_admin(sender, instance, **kwargs):
+        if instance.is_admin:
+            instance.admin.save()
+           
     def delete_admin(self):
         self.delete()
     
@@ -88,10 +92,15 @@ class Profile(models.Model):
     
     @receiver(post_save, sender=User)
     def update_user(sender, instance, created, **kwargs):
-        if instance.is_profile and created:
-            Profile.objects.get_or_create(user = instance)
-        instance.profile.save()
+        if instance.is_profile:
+            if created:
+                Profile.objects.get_or_create(user = instance)
 
+    @receiver(post_save, sender=User)
+    def save_user_profile(sender, instance, **kwargs):
+        if instance.is_profile:
+            instance.profile.save()
+    
     def delete_profile(self):
         self.delete()
     
