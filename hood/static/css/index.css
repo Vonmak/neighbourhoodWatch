@@ -1,4 +1,7 @@
 /* .main {} */
+html,body{
+    font-family: 'Poppins', sans-serif;
+}
 
 .hero {
     height: 94vh;
