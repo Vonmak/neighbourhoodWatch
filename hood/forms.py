@@ -16,12 +16,12 @@ class UserForm(UserCreationForm):
 class AdminForm(forms.ModelForm):
     class Meta:
         model= Admin
-        fields= ['house_number','phone',]
+        fields= ['email','pic','house_number','phone']
         
 class ProfileForm(forms.ModelForm):
     class Meta:
         model= Profile
-        fields= ['house_number','phone',]
+        fields= ['email','pic','hood','house_number','phone']
    
         
 class HoodForm(forms.ModelForm):
@@ -41,4 +41,4 @@ class LoginForm(forms.Form):
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields= ['title', 'post']
+        fields= ['title', 'post']                                                                                           
