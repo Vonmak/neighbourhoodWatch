@@ -1,5 +1,3 @@
-
-#all imports from views.py
 from .views import *
 from django.urls import path
 from django.conf import settings
@@ -12,7 +10,6 @@ urlpatterns=[
     path('logs/',admin_log),
     path('member/',member),
     path('hood/<id>',hood),
-    path('biz/<name>',biz),
     path('login/',login_user),
     path('logout',logout_user),
     path('profile/<id>',memberprof, name='profile'),
