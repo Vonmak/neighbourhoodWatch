@@ -21,18 +21,13 @@ class Admin(models.Model):
     
     def __str__(self):
         return f'{self.user.username} Admin'
-    
+         
     @receiver(post_save, sender=User)
     def update_user(sender, instance, created, **kwargs):
-        if instance.is_admin:
-           Admin.objects.get_or_create(user = instance)
-            
-
-    @receiver(post_save, sender=User)
-    def save_user(sender, instance, **kwargs):
-        if instance.is_admin:
-            instance.admin.save()
-            
+        if instance.is_admin and created:
+            Profile.objects.get_or_create(user = instance)
+        instance.admin.save()
+              
             
     def delete_admin(self):
         self.delete()
@@ -93,15 +88,10 @@ class Profile(models.Model):
     
     @receiver(post_save, sender=User)
     def update_user(sender, instance, created, **kwargs):
-        if instance.is_profile:
+        if instance.is_profile and created:
             Profile.objects.get_or_create(user = instance)
+        instance.profile.save()
 
-
-    @receiver(post_save, sender=User)
-    def save_user(sender, instance, **kwargs):
-        if instance.is_profile:
-            instance.profile.save()
-     
     def delete_profile(self):
         self.delete()
     
@@ -149,5 +139,10 @@ class Post(models.Model):
     @classmethod
     def filter_by_hood(cls, hood):
         posts = cls.objects.filter(hood__id__icontains=hood).all()
+        return posts
+    
+    @classmethod
+    def filter_by_user(cls, user):
+        posts = cls.objects.filter(user__id__icontains=user).all()
         return posts
      
