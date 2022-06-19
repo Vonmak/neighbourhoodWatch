@@ -10,5 +10,6 @@ urlpatterns=[
     path('biz/<name>',biz),
     path('login/',login_user),
     path('logout',logout_user),
-    # path('<id>/post/',post, name='post'),
+    path('profile/<id>',memberprof, name='profile'),
+    path('adminprofile/<id>',adminprof, name='admin'),
 ]
