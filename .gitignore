@@ -23,7 +23,7 @@ media
 
 # C extensions
 *.so
-
+vir/
 # Distribution / packaging
 .Python
 build/
@@ -176,3 +176,5 @@ cython_debug/
 
 requirements.txt
 migrations/
+debug.txt
+guide.txt

@@ -4,6 +4,7 @@ from .forms import *
 from django.contrib.auth import authenticate, login, logout
 
 # Create your views here.
+
 def index(request):
     return render(request, 'index.html',locals())
 
