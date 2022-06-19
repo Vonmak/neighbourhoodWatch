@@ -1,0 +1,160 @@
+{% extends 'base.html'%}{% load static %}{%block content%}
+<div class="container main-admin text-dark">
+  <div class="row prof1">
+    <div class="col-md-4 prof4">
+      <div class="card">
+        {% if admin.pic %}
+
+        <div class="card-title">
+          <li class="list-inline-item">
+            <img
+              class="img-fluid rounded-pill index-admin"
+              src="{{admin.pic.url}}"
+              alt="photo"
+            />
+          </li>
+
+          <li class="list-inline-item">
+            <h4>{{admin.user.username|title}}</h4>
+          </li>
+        </div>
+
+        <div class="card-body">
+          <p>
+            House Number:
+            <small class="text-muted"> {{admin.house_number|title}}</small>
+          </p>
+          <p>
+            Email:
+            <small class="text-muted"> {{admin.email|title}}</small>
+          </p>
+          <p>
+            Telphone:
+            <small class="text-muted"> {{admin.phone|title}}</small>
+          </p>
+        </div>
+
+        {% else %}
+        <div class="card-title">
+          <li class="list-inline-item">
+            <img
+              class="img-fluid rounded-pill index-admin"
+              src="{% static 'images/starating.jpeg'%}"
+            />
+          </li>
+          <li class="list-inline-item">
+            <h4>{{admin.user.username|title}}</h4>
+          </li>
+        </div>
+        <div class="card-body">
+          <p>
+            House Number:
+            <small class="text-muted"> {{admin.house_number|title}}</small>
+          </p>
+          <p>
+            Email:
+            <small class="text-muted"> {{admin.email|title}}</small>
+          </p>
+          <p>
+            Telphone:
+            <small class="text-muted"> {{admin.phone|title}}</small>
+          </p>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+    <div class="col-md-7 prof6 text-center">
+      <li class="list-inline-item">
+        <span class="font-weight-bold">{{posts.count}} </span> posts
+      </li>
+      <li class="list-inline-item">
+        {% if admin.user.id == user.admin.user.id%}
+        <a
+          href="/admin"
+          class="btn btn-outline-info"
+          data-bs-toggle="modal"
+          data-bs-target="#edit"
+          >Edit admin</a
+        >
+        {% endif %}
+      </li>
+      {% if posts %} {% for post in posts %}
+      <div class="card prof10">
+        <div class="card-title">{{post.title}}</div>
+        <div class="card-body">{{post.post}}</div>
+        <hr />
+        <p>
+          <small class="text-muted"> {{post.date|timesince}}</small>
+        </p>
+      </div>
+      {% endfor %}{% else %}
+      <h1 class="text-center">No posts Posted Yet...</h1>
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- The Modal -->
+<div class="modal" id="edit">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Update admin</h4>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+        ></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <form method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="pic" class="form-label">{{ad_form.pic.label}}:</label
+            ><br />
+            {{ad_form.pic}}
+          </div>
+          <div class="form-group">
+            <label for="email" class="form-label"
+              >{{ad_form.email.label}}:</label
+            ><br />
+            {{ad_form.email}}
+          </div>
+          <div class="form-group">
+            <label for="phone" class="form-label"
+              >{{ad_form.phone.label}}:</label
+            ><br />
+            {{ad_form.phone}}
+          </div>
+          <div class="form-group">
+            <label for="house_number" class="form-label"
+              >{{ad_form.house_number.label}}:</label
+            ><br />
+            {{ad_form.house_number}}
+          </div>
+
+          <br />
+
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button class="btn btn-outline-info btn-md" type="submit">
+              Edit
+            </button>
+
+            <button
+              type="button"
+              class="btn btn-outline-danger"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
