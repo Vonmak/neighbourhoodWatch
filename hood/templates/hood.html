@@ -76,7 +76,14 @@
       {% endfor %}{% endif %}
     </div>
     <div class="col-md-4">
-      <h4>Hood Businesses</h4>
+      
+      <h4>Hood Businesses</h4><button
+      class="btn btn-sm btn-outline-info mb-4"
+      data-bs-toggle="modal"
+      data-bs-target="#mybiz"
+    >
+      New Busines
+    </button>
       {% if biz %} {% for b in biz %}
       <div class="card">
         <p>
@@ -129,7 +136,60 @@
           <br />
           <!-- Modal footer -->
           <div class="modal-footer">
-            <button class="btn btn-primary" type="submit">Upload</button>
+            
+            <input type="submit" class="btn btn-info" value="upload" name="upload" />
+            <button
+              type="button"
+              class="btn btn-danger"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- The Modal -->
+<div class="modal" id="mybiz">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="text-info">New Business</h4>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+        ></button>
+      </div>
+      <!-- Modal body -->
+      <div class="modal-body">
+        <form action="" method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="name" class="form-label"
+              >{{b_form.name.label}}:</label
+            ><br />
+            {{b_form.name}}
+          </div>
+          <div class="form-group">
+            <label for="email" class="form-label">{{b_form.email.label}}:</label
+            ><br />
+            {{b_form.email}}
+          </div>
+          <div class="form-group">
+            <label for="pic" class="form-label">{{b_form.pic.label}}:</label
+            ><br />
+            {{b_form.pic}}
+          </div>
+          <br />
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            
+            <input type="submit" class="btn btn-info" value="post" name="post" />
             <button
               type="button"
               class="btn btn-danger"
