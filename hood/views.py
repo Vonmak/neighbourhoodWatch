@@ -24,16 +24,17 @@ def home(request):
     return render(request, 'home.html',locals())
 
 def admin_log(request):
-    user_form=UserForm
+    form=UserForm
     if request.method=='POST':
-        user_form=UserForm(request.POST, request.FILES)
-        if user_form.is_valid():
-            user = user_form.save()
+        form=UserForm(request.POST, request.FILES)
+        # ad_form=AdminForm(request.POST, request.FILES)
+        if form.is_valid():
+            user = form.save(commit=False)
             user.save()
             user.refresh_from_db()
-            user.admin.email = user_form.cleaned_data.get('email')
-            user.save()
-            return HttpResponse(home) 
+            user.admin.email = form.cleaned_data.get('email')
+            user.admin.save()
+            return redirect(home)
     else:
         user_form=UserForm()
     return render(request, 'admin.html',locals())
@@ -42,13 +43,15 @@ def member(request):
     user_form=UserForm
     if request.method=='POST':
         user_form=UserForm(request.POST, request.FILES)
+        # form=ProfileForm(request.POST, request.FILES)
         if user_form.is_valid():
-            user = user_form.save()     
+            user = user_form.save(commit=False)  
+            user.save()   
             user.refresh_from_db()
             user.profile.email = user_form.cleaned_data.get('email')
-            user.save()
+            user.profile.save()
             user_form.save()
-            return redirect(home) 
+            return redirect(home)
     else:
         user_form=UserForm()
     return render(request, 'profile.html',locals())
@@ -81,29 +84,26 @@ def hood(request, id):
     biz=Business.filter_by_hood(hood.id)
     members=Profile.filter_by_hood(hood.id)
     posts=Post.filter_by_hood(hood.id)
+    b_form= BusinessForm()
     form = PostForm()
     if request.method=='POST':
-        form = PostForm(request.POST, request.FILES)
-        print(form)
-        if form.is_valid():
-            h = form.save(commit=False)
-            h.user = request.user
-            h.hood = hood
-            h.save()
-            return HttpResponseRedirect(request.path_info)
+        if 'upload' in request.POST:
+            form = PostForm(request.POST, request.FILES)
+            if form.is_valid():
+                h = form.save(commit=False)
+                h.user = request.user
+                h.hood = hood
+                h.save()
+            b_form= BusinessForm()   
+        elif 'post' in request.POST:
+            b_form = BusinessForm(request.POST, request.FILES)
+            if b_form.is_valid():
+                b = b_form.save(commit=False)
+                b.user = request.user
+                b.hood = hood
+                b.save()
+            form = PostForm()
     return render(request, 'hood.html', locals())
-
-def biz(request, name):
-    biz = Business.objects.get(name=name)
-    form= BusinessForm
-    if request.method == 'POST':
-        form=BusinessForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect(index)
-        else:
-            form=BusinessForm()
-    return render(request, 'biz.html', locals())
 
 def memberprof(request, id):  
     user=User.objects.filter(id=id).first()
