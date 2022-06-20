@@ -1,6 +1,6 @@
-{% extends 'base.html' %}{% load static %}{%block content%}
+{% extends 'base.html' %}{% load static %}{% block content%}
 
-<div class="container main">
+<div class="container-main">
   <div class="row">
     <div class="col-md-4">
       <div class="card">
@@ -13,7 +13,7 @@
           <small class="text-muted">Tel: {{ hood.admin.phone | title}}</small
           >
           {% if user.is_admin %} {% if user.id == hood.admin.user.id %}
-          <p> <small>To add another or edit hood <br> find the buuton a the navbar in the <a href="/home">home page.</a> </small></p>
+          <p> <small>To add another or edit hood <br> find the button a the navbar in the <a href="/home">home page.</a> </small></p>
         {% endif %}{% endif %}
         </p>
         <p class="card-text">
@@ -48,7 +48,7 @@
             alt="pic"
           />{% endif %} {{member.user.username| title}}
         </p>
-        {%endfor %} {% endif %}
+        {% endfor %} {% endif %}
       </div>
     </div>
     <div class="col-md-4 register">
@@ -104,6 +104,7 @@
     <small class="text-muted">Account Created on: {{hood.date|date}}</small>
   </div>
 </div>
+
 
 
 <!-- The Modal -->
@@ -203,4 +204,5 @@
     </div>
   </div>
 </div>
-{%endblock%}
+
+{% endblock%}

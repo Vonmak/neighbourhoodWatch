@@ -1,0 +1,71 @@
+.prof-hero {
+    height: 100%;
+    color: black;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+}
+
+.image {
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100vh;
+    width: 100%;
+    position: absolute;
+    z-index: 1;
+    filter: brightness(50%);
+}
+
+.log-hero {
+    height: 100vh;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    box-shadow: 1rem #ff7b00;
+}
+
+.two {
+    position: relative;
+    z-index: 2;
+}
+
+.md-4 {
+    position: relative;
+    z-index: 2;
+}
+
+input {
+    margin: 5px;
+}
+
+.register {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+.text-info {
+    align-items: center;
+    margin-left: 3rem;
+}
+
+#prof-content {
+    margin-left: 15rem;
+    border-radius: 2rem;
+    width: fit-content;
+    margin-top: 1rem;
+}
+
+#prof-hero reg-form {
+    padding: 0cm;
+}
+
+#prof-title {
+    background-color: #ff7b00;
+}

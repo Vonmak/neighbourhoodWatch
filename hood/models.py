@@ -103,6 +103,7 @@ class Profile(models.Model):
     
     def delete_profile(self):
         self.delete()
+
     
     @classmethod
     def filter_by_hood(cls, hood):

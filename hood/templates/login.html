@@ -1,16 +1,15 @@
-{% extends 'auth/base.html' %}{% load static %}{%block content%}
-<div
-  class="container main"
-  style="background-image: url({%static 'images/projects.jpeg'%})"
->
+{% extends 'auth/base.html' %}{% load static %}{% block content%}
+<div class="log-hero">
+  <img src="{% static 'css/reg.jpg'%}" alt="" class="image" />
+
   <div class="col-md-4 two"></div>
-  <div class="card col-md-4 register">
-    <h4 class="text-info">LOGIN</h4>
+  <div class="card col-md-4 register" id="register">
+    <h4 class="text-info" id="text-infor">LOGIN</h4>
     <form action="" method="post">
       {% csrf_token %}
 
       <div class="form-group">
-        <i class="fa-solid fa-envelope"></i>
+        <i class="fa-solid fa-user"></i>
         {{form.username}}
       </div>
       <div class="form-group">
@@ -21,9 +20,18 @@
       <button class="btn btn-outline-info" type="submit">Login</button>
     </form>
 
-    <p>Not a hood Member?<a href="/member" class="text-info">Sign Up Here!</a></p>
-    <p>Want to be an Administrator?<a href="/logs" class="text-info">Sign Up Here!</a></p>
+    <p>
+      Not a hood Member?<a href="/member" class="text-info"
+        >Sign Up Here!</a
+      >
+    </p>
+    <p>
+      Want to be an Administrator?<a href="/logs" class="text-info"
+        >Sign Up Here!</a
+      >
+    </p>
   </div>
+
   <div class="col-md-4 two"></div>
 </div>
-{%endblock%}
+{% endblock%}
