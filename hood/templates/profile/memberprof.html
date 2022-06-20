@@ -1,5 +1,5 @@
 {% extends 'base.html'%}{% load static %}{%block content%}
-<div class="container main-profile text-dark">
+<div class="container-fluid main-profile text-dark">
   <div class="row prof1">
     <div class="col-md-12 prof2">
       <div class="row prof3">
@@ -10,7 +10,7 @@
             <div class="card-title">
               <li class="list-inline-item">
                 <img
-                  class="img-fluid rounded-pill index-profile"
+                  class="img-fluid rounded-pill prof-pic"
                   src="{{profile.pic.url}}"
                   alt="photo"
                 />
@@ -77,23 +77,25 @@
               </p>
             </div>
             {% endif %}
+            <ul class="list-inline text-center">
+              <li class="list-inline-item">
+                {% if profile.user.id == user.profile.user.id%}
+                <a
+                  href="/profile"
+                  class="btn btn-outline-info"
+                  data-bs-toggle="modal"
+                  data-bs-target="#edit"
+                  >Edit profile</a
+                >
+                {% endif %}
+              </li>
+              <li class="list-inline-item">
+                <span class="font-weight-bold">{{posts.count}} </span> posts
+              </li>
+            </ul>
           </div>
         </div>
         <div class="col-md-7 prof6 text-center">
-          <li class="list-inline-item">
-            <span class="font-weight-bold">{{posts.count}} </span> posts
-          </li>
-          <li class="list-inline-item">
-            {% if profile.user.id == user.profile.user.id%}
-            <a
-              href="/profile"
-              class="btn btn-outline-info"
-              data-bs-toggle="modal"
-              data-bs-target="#edit"
-              >Edit profile</a
-            >
-            {% endif %}
-          </li>
           {% if posts %} {% for post in posts %}
           <div class="card prof10">
             <div class="card-title">{{post.title}}</div>

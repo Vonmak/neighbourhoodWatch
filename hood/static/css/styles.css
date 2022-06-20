@@ -6,3 +6,15 @@
 .post {
     color: rgb(240, 240, 243);
 }
+
+.prof-pic {
+    height: 300px;
+    width: 300px;
+}
+
+.main-profile {
+    background: #edf6f9;
+    height: 100vh;
+    overflow: scroll;
+    padding: 10px;
+}
