@@ -1,8 +1,48 @@
+
+body {
+  height: 100vh;
+  margin: 0;
+  /* background: #0000; */
+}
 .pic {
     height: 40px;
     width: 40px;
 }
 
-.post {
-    color: rgb(240, 240, 243);
+.card-title{
+    color: #01497c;
+}
+
+.card{
+  
+    opacity: 100%;
+    border-radius: 8px;
+    box-shadow: #01497c;
+    /* background-color: #76c893; */
+    margin-left: 2rem;
+    padding: 1rem;
+    margin-top: 1rem;
+}
+
+.row{
+ color: antiquewhite;
+   /* background-image: url("grey.jpg"); */
+   width: 100%;
+    background-image: linear-gradient(to right top, #051937, #001e39, #00233a, #00273a, #022b3a);
+   height: 100vh; 
+   opacity: 80%;
+   box-shadow: white;
+}
+
+.home-hero{
+    background-image: linear-gradient(to right top, #051937, #001e39, #00233a, #00273a, #022b3a);
+     width: 100%;
+     height: 100vh;
+     opacity: 100%;
+}
+
+.home-hero, .card{
+background-color: black;
+color: #edf2f4;
+opacity: 100%;
 }
