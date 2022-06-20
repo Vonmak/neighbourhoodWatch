@@ -2,7 +2,7 @@
 body {
   height: 100vh;
   margin: 0;
-  /* background: #246756; */
+  background: #246756;
 }
 .pic {
     height: 40px;
@@ -28,20 +28,14 @@ body {
  color: antiquewhite;
    /* background-image: url("grey.jpg"); */
    width: 100%;
-   background: 
-   
-    radial-gradient(
-      farthest-corner at bottom right,
-      rgba(255, 50, 50, 0.5), 
-      transparent 400px
-    );
+    background-image: linear-gradient(to right top, #051937, #001e39, #00233a, #00273a, #022b3a);
    height: 100vh; 
    opacity: 80%;
    box-shadow: white;
 }
 
 .home-hero{
-      background-image: linear-gradient(to right top, #001427, #001427, #001427, #001427, #001427);
+    background-image: linear-gradient(to right top, #051937, #001e39, #00233a, #00273a, #022b3a);
      width: 100%;
      height: 100vh;
      opacity: 100%;
