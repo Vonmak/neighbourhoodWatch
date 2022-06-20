@@ -1,56 +1,78 @@
-
-
-#prof-hero{
-     background-image: url("reg.jpg");
-  width: 90%;
+.prof-hero {
   height: 100%;
-  background-size: auto;
-  padding-top: 0.5rem;
   color: black;
   background-repeat: no-repeat;
-  margin-left: 3rem;
-  border-radius: 2rem;
-  align-items:center;
-  justify-items: center;
-  box-shadow: 1rem #ff7b00 ;
-}
+  /* margin-left: 3rem;
+  border-radius: 2rem; */
+  display: flex;
 
-.log-hero{
-     background-image: url("reg.jpg");
-width: 90%;
+  align-items: center;
+  justify-items: center;
+ } 
+
+.image {
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: center;
   height: 100vh;
-  background-size: auto;
-  padding-top: 0.5rem;
+  width: 100%;
+  position: absolute;
+  z-index: 1;
+  filter: brightness(50%);
+}
+.log-hero {
+  /* background-image: url("reg.jpg");background-size: 100vh; */
+  /* width: 100%; */
+  height: 100vh;
+  /* background-size: auto; */
+  /* padding-top: 0.5rem; */
   color: black;
-  background-repeat: no-repeat;
-  margin-left: 3rem;
-  border-radius: 2rem;
-  align-items:center;
+  /* background-repeat: no-repeat; */
+  /* margin-left: 3rem; */
+  /* border-radius: 2rem; */
+  display: flex;
+
+  align-items: center;
   justify-items: center;
-  box-shadow: 1rem #ff7b00 ;
+  box-shadow: 1rem #ff7b00;
+  /* border: 1px solid red; */
+}
+.two {
+  position: relative;
+  z-index: 2;
 }
 
-#register{
-    margin-left: 15rem;
-    border-radius: 2rem;
-    width: fit-content;
-    color: #ff7b00;
-    margin-top: 8rem;
+.md-4{
+  position: relative;
+  z-index: 2;
 }
-.text-info{
-    align-items: center;
-    margin-left: 3rem;
+input {
+  margin: 5px;
+}
+.register {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+.text-info {
+  align-items: center;
+  margin-left: 3rem;
 }
 
-#prof-content{
-   margin-left: 15rem;
-    border-radius: 2rem;
-    width: fit-content;
-    margin-top: 1rem;
+#prof-content {
+  margin-left: 15rem;
+  border-radius: 2rem;
+  width: fit-content;
+  margin-top: 1rem;
 }
 
+#prof-hero reg-form {
+  padding: 0cm;
+}
 
-
-#prof-hero reg-form{
-    padding: 0cm;
+#prof-title {
+  background-color: #ff7b00;
 }

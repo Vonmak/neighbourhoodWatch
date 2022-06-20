@@ -1,36 +1,37 @@
 {% extends 'auth/base.html' %}{% load static %}{% block content%}
-<div class="log-hero"> 
-  <div
-    class="container_main"
-  >
-    <div class="col-md-4 two"></div>
-    <div class="card col-md-4 register" id="register">
-      <h4 class="text-info text-dark" id="text-infor">LOGIN</h4>
-      <form action="" method="post">
-        {% csrf_token %}
+<div class="log-hero">
+  <img src="{% static 'css/reg.jpg'%}" alt="" class="image" />
 
-        <div class="form-group">
-          <i class="fa-solid fa-envelope"></i>
-          {{form.username}}
-        </div>
-        <div class="form-group">
-          <i class="fa-solid fa-unlock"></i>
-          {{form.password}}
-        </div>
-        <br />
-        <button class="btn btn-outline-info" type="submit">Login</button>
-      </form>
+  <div class="col-md-4 two"></div>
+  <div class="card col-md-4 register" id="register">
+    <h4 class="text-info" id="text-infor">LOGIN</h4>
+    <form action="" method="post">
+      {% csrf_token %}
 
-      <p>
-        Not a hood Member?<a href="/member" class="text-info text-dark">Sign Up Here!</a>
-      </p>
-      <p>
-        Want to be an Administrator?<a href="/logs" class="text-info text-dark"
-          >Sign Up Here!</a
-        >
-      </p>
-    </div>
-    {% comment %} <div class="col-md-4 two"></div> {% endcomment %}
+      <div class="form-group">
+        <i class="fa-solid fa-user"></i>
+        {{form.username}}
+      </div>
+      <div class="form-group">
+        <i class="fa-solid fa-unlock"></i>
+        {{form.password}}
+      </div>
+      <br />
+      <button class="btn btn-outline-info" type="submit">Login</button>
+    </form>
+
+    <p>
+      Not a hood Member?<a href="/member" class="text-info"
+        >Sign Up Here!</a
+      >
+    </p>
+    <p>
+      Want to be an Administrator?<a href="/logs" class="text-info"
+        >Sign Up Here!</a
+      >
+    </p>
   </div>
+
+  <div class="col-md-4 two"></div>
 </div>
 {% endblock%}
