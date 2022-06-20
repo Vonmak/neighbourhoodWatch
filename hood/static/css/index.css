@@ -1,4 +1,22 @@
-/* .main {} */
+.main {
+    height: 100vh;
+}
+
+.navbars {
+    height: 10vh;
+    background-color: #023047;
+}
+
+.main2 {
+    height: 85vh;
+    overflow: scroll;
+    background-color: #333;
+}
+
+.footer {
+    height: 5vh;
+    background-color: #023047;
+}
 
 .pic {
     height: 40px;
@@ -6,20 +24,21 @@
 }
 
 .hero {
-    height: 94vh;
-    border: 1px solid rgb(255, 0, 0);
-    margin-bottom: 30px;
+    height: 81vh;
+    margin-bottom: 15px;
 }
 
 .index {
+    width: 100%;
     background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;
     background-color: #cccccc;
-    height: 94vh;
+    height: 81vh;
     position: absolute;
     z-index: 1;
     filter: brightness(50%);
+    background-size: contain;
 }
 
 .hero2 {
@@ -30,13 +49,10 @@
     color: #fff;
     position: relative;
     z-index: 2;
-    border: 1px solid rgb(16, 237, 35);
 }
 
 .hero1 {
     position: relative;
-    z-index: 2;
-    border: 1px solid rgb(0, 8, 255);
 }
 
 .hero3 {
@@ -45,45 +61,75 @@
     border: 1px solid rgb(0, 0, 0);
 }
 
-.sidenav {
-    height: 100%;
-    width: 0;
+.about {
     position: relative;
+    z-index: 2;
+    color: #fff;
+}
+
+.services {
+    position: relative;
+    z-index: 2;
+    color: #fff;
+}
+
+.sidenav {
+    height: 50vh;
+    width: 0;
+    position: fixed;
     z-index: 2;
     top: 0;
     left: 0;
-    background-color: #023047;
+    background-color: #111;
     overflow-x: hidden;
     transition: 0.5s;
     padding-top: 60px;
 }
 
-a {
+.sidenav a {
     padding: 8px 8px 8px 32px;
     text-decoration: none;
     font-size: 25px;
     color: #818181;
     display: block;
     transition: 0.3s;
-    z-index: 1;
 }
 
-a:hover {
+.sidenav a:hover {
     color: #f1f1f1;
 }
 
 .sidenav .closebtn {
-    position: relative;
+    position: absolute;
     top: 0;
     right: 25px;
     font-size: 36px;
     margin-left: 50px;
-    /* z-index: 2; */
 }
 
-#main {
-    transition: margin-left .5s;
-    padding: 16px;
+.sidenav .tag1 {
+    position: absolute;
+    top: 0;
+}
+
+.sidenav .tag2 {
+    position: absolute;
+    top: 50px;
+}
+
+.sidenav .tag3 {
+    position: absolute;
+    top: 100px;
+}
+
+.sidenav .tag4 {
+    position: absolute;
+    top: 150px;
+}
+
+.sidenav .tag5 {
+    position: absolute;
+    top: 200px;
 }
 
 @media screen and (max-height: 450px) {
@@ -93,18 +139,4 @@ a:hover {
     .sidenav a {
         font-size: 18px;
     }
-}
-
-
-/* Navbar */
-
-#navbar {
-    background-color: #023047;
-}
-
-.navbar {
-    position: relative;
-    top: 0;
-    width: 100%;
-    z-index: 2;
 }
