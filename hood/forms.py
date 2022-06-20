@@ -32,7 +32,7 @@ class HoodForm(forms.ModelForm):
 class BusinessForm(forms.ModelForm):
     class Meta:
         model= Business
-        fields= '__all__'
+        fields= ['email','pic','name',]
         
 class LoginForm(forms.Form):
     username=forms.CharField(max_length=50)

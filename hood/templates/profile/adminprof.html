@@ -1,5 +1,5 @@
 {% extends 'base.html'%}{% load static %}{%block content%}
-<div class="container main-admin text-dark">
+<div class="container-fluid main-profile text-dark">
   <div class="row prof1">
     <div class="col-md-4 prof4">
       <div class="card">
@@ -8,7 +8,7 @@
         <div class="card-title">
           <li class="list-inline-item">
             <img
-              class="img-fluid rounded-pill index-admin"
+              class="img-fluid rounded-pill prof-pic"
               src="{{admin.pic.url}}"
               alt="photo"
             />
@@ -61,23 +61,27 @@
           </p>
         </div>
         {% endif %}
+        <ul class="list-inline text-center">
+          <li class="list-inline-item">
+            {% if admin.user.id == user.admin.user.id%}
+            <a
+              href="/admin"
+              class="btn btn-outline-info"
+              data-bs-toggle="modal"
+              data-bs-target="#edit"
+              >Edit admin</a
+            >
+            {% endif %}
+          </li>
+          <li class="list-inline-item">
+            <span class="font-weight-bold">{{posts.count}} </span> posts
+          </li>
+          <li class="list-inline-item"></li>
+        </ul>
       </div>
     </div>
-    <div class="col-md-7 prof6 text-center">
-      <li class="list-inline-item">
-        <span class="font-weight-bold">{{posts.count}} </span> posts
-      </li>
-      <li class="list-inline-item">
-        {% if admin.user.id == user.admin.user.id%}
-        <a
-          href="/admin"
-          class="btn btn-outline-info"
-          data-bs-toggle="modal"
-          data-bs-target="#edit"
-          >Edit admin</a
-        >
-        {% endif %}
-      </li>
+    <div class="col-md-4 prof6">
+      <h4 class="text-center">Posts</h4>
       {% if posts %} {% for post in posts %}
       <div class="card prof10">
         <div class="card-title">{{post.title}}</div>
@@ -89,6 +93,21 @@
       </div>
       {% endfor %}{% else %}
       <h1 class="text-center">No posts Posted Yet...</h1>
+      {% endif %}
+    </div>
+    <div class="col-md-3 prof6">
+      <h4 class="text-center">Business</h4>
+      {% if bizs %} {% for post in bizs %}
+      <div class="card prof10">
+        <div class="card-title">{{post.name}}</div>
+
+        <hr />
+        <p>
+          <small class="text-muted"> {{post.date|timesince}}</small>
+        </p>
+      </div>
+      {% endfor %}{% else %}
+      <h1 class="text-center">No Business Posted Yet...</h1>
       {% endif %}
     </div>
   </div>
