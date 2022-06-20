@@ -33,7 +33,7 @@ SECRET_KEY = 'django-insecure-!dqmf8k6lt25s%9p#o$9e_tpb9x4%js!l^3&9p=zyeboyp6whv
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['thehoodwatch.herokuapp.com', '.127.0.0.1']
 
 
 # Application definition
@@ -152,12 +152,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Configure Django App for Heroku.
 django_heroku.settings(locals())
 
-# adding config
-# cloudinary.config( 
-#   cloud_name = config("cloud_name"), 
-#   api_key = config("api_key"), 
-#   api_secret = config("api_secret"),
-# )
 cloudinary.config( 
 cloud_name = "ddtmsdlip", 
 api_key = "356757256393764", 
@@ -166,8 +160,3 @@ api_secret = "V-68rzwrl7fFATIiLhanN9z8zts"
 
 # Whitenoise Settings
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-# AUTHENTICATION_BACKENDS=[
-#     'django.contrib.auth.backends.ModelBackend',
-#     'hood.customAuth.EmailAuth'
-# ]
