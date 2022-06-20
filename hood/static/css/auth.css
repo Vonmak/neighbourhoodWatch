@@ -12,30 +12,31 @@
   border-radius: 2rem;
   align-items:center;
   justify-items: center;
+  box-shadow: 1rem #ff7b00 ;
 }
 
 .log-hero{
-    /* background-color: #468faf; */
-  background-image: url("login.jpg");
-  width: 80%;
-  height: 70vh;
+     background-image: url("reg.jpg");
+width: 90%;
+  height: 100vh;
   background-size: auto;
-  /* background-position: center; */
-  padding-top: 3rem;
+  padding-top: 0.5rem;
   color: black;
   background-repeat: no-repeat;
   margin-left: 3rem;
-border-radius: 2rem;
-  align-items: center;
+  border-radius: 2rem;
+  align-items:center;
+  justify-items: center;
+  box-shadow: 1rem #ff7b00 ;
 }
 
 #register{
     margin-left: 15rem;
-    border-radius: 2px;
+    border-radius: 2rem;
     width: fit-content;
-
+    color: #ff7b00;
+    margin-top: 8rem;
 }
-
 .text-info{
     align-items: center;
     margin-left: 3rem;
@@ -43,11 +44,11 @@ border-radius: 2rem;
 
 #prof-content{
    margin-left: 15rem;
-   padding: 2px;
-   /* border-color: red; */
-    border-radius: 2px;
+    border-radius: 2rem;
     width: fit-content;
+    margin-top: 1rem;
 }
+
 
 
 #prof-hero reg-form{

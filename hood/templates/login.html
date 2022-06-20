@@ -1,11 +1,11 @@
 {% extends 'auth/base.html' %}{% load static %}{% block content%}
-<div class="log-hero">
+<div class="log-hero"> 
   <div
-    class="container main"
+    class="container_main"
   >
     <div class="col-md-4 two"></div>
     <div class="card col-md-4 register" id="register">
-      <h4 class="text-info" id="text-infor">LOGIN</h4>
+      <h4 class="text-info text-dark" id="text-infor">LOGIN</h4>
       <form action="" method="post">
         {% csrf_token %}
 
@@ -22,10 +22,10 @@
       </form>
 
       <p>
-        Not a hood Member?<a href="/member" class="text-info">Sign Up Here!</a>
+        Not a hood Member?<a href="/member" class="text-info text-dark">Sign Up Here!</a>
       </p>
       <p>
-        Want to be an Administrator?<a href="/logs" class="text-info"
+        Want to be an Administrator?<a href="/logs" class="text-info text-dark"
           >Sign Up Here!</a
         >
       </p>
