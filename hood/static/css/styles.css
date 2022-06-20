@@ -2,7 +2,7 @@
 body {
   height: 100vh;
   margin: 0;
-  background: #0000;
+  /* background: #0000; */
 }
 .pic {
     height: 40px;
@@ -14,11 +14,11 @@ body {
 }
 
 .card{
-    color: #ca6702;
-    opacity: 0%;
+  
+    opacity: 100%;
     border-radius: 8px;
     box-shadow: #01497c;
-    background-color: #76c893;
+    /* background-color: #76c893; */
     margin-left: 2rem;
     padding: 1rem;
     margin-top: 1rem;
