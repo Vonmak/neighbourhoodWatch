@@ -2,12 +2,14 @@ from django.shortcuts import render,redirect, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from .forms import *
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
 def index(request):
     return render(request, 'index.html',locals())
 
+@login_required(login_url='/login')
 def home(request):
     hoods=Neighbourhood.objects.all()
     posts= Post.objects.all()
@@ -77,8 +79,9 @@ def login_user(request):
         
 def logout_user(request):
     logout(request)
-    return redirect(home)
+    return redirect(index)
 
+@login_required(login_url='/login')
 def hood(request, id):
     hood = Neighbourhood.objects.get(id=id)
     biz=Business.filter_by_hood(hood.id)
@@ -105,6 +108,7 @@ def hood(request, id):
             form = PostForm()
     return render(request, 'hood.html', locals())
 
+@login_required(login_url='/login')
 def memberprof(request, id):  
     user=User.objects.filter(id=id).first()
     profile = Profile.objects.get(user=id)
@@ -123,6 +127,7 @@ def memberprof(request, id):
         
     return render(request,"profile/memberprof.html",locals())
 
+@login_required(login_url='/login')
 def adminprof(request, id):  
     user=User.objects.filter(id=id).first()
     admin = Admin.objects.get(user=id)
