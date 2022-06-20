@@ -134,6 +134,10 @@ class Business(models.Model):
     def filter_by_hood(cls, hood):
         businesses = cls.objects.filter(hood__id__icontains=hood).all()
         return businesses
+    @classmethod
+    def filter_by_user(cls, user):
+        bizs = cls.objects.filter(user__id__icontains=user).all()
+        return bizs
      
     
 class Post(models.Model):

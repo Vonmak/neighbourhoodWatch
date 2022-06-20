@@ -80,9 +80,8 @@
         </ul>
       </div>
     </div>
-    <div class="col-md-7 prof6 text-center">
-  
-
+    <div class="col-md-4 prof6">
+      <h4 class="text-center">Posts</h4>
       {% if posts %} {% for post in posts %}
       <div class="card prof10">
         <div class="card-title">{{post.title}}</div>
@@ -94,6 +93,21 @@
       </div>
       {% endfor %}{% else %}
       <h1 class="text-center">No posts Posted Yet...</h1>
+      {% endif %}
+    </div>
+    <div class="col-md-3 prof6">
+      <h4 class="text-center">Business</h4>
+      {% if bizs %} {% for post in bizs %}
+      <div class="card prof10">
+        <div class="card-title">{{post.name}}</div>
+
+        <hr />
+        <p>
+          <small class="text-muted"> {{post.date|timesince}}</small>
+        </p>
+      </div>
+      {% endfor %}{% else %}
+      <h1 class="text-center">No Business Posted Yet...</h1>
       {% endif %}
     </div>
   </div>

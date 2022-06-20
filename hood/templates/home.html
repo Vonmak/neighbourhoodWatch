@@ -2,16 +2,16 @@
 <section class="home-hero">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-md-3">
-        <h4 class="text-center">Hood Watch Registered Hoods</h4>
+      <div class="col-md-3"style="overflow: scroll;">
+        <h4 class="text-center">Hoods</h4>
         {% if hoods %}{% for hood in hoods %}
         <div class="card">
           <a href="/hood/{{hood.id}}">{{hood.name}}</a>
         </div>
         {% endfor %} {% endif %}
       </div>
-      <div class="col-md-4">
-        <h4 class="text-center">All Posts from all hoods.</h4>
+      <div class="col-md-4"style="overflow: scroll;">
+        <h4 class="text-center">Posts.</h4>
         {% if posts %}{% for post in posts %}
         <div class="card">
           <div class="card-title">{{post.title}}</div>
@@ -25,19 +25,25 @@
         </div>
         {% endfor %} {% endif %}
       </div>
-      <div class="col-md-3">
-        <h4 class="text-center">Hood Watch Registered Businesses</h4>
+      <div class="col-md-3"style="overflow: scroll;">
+        <h4 class="text-center">Businesses</h4>
         {% if business %} {% for biz in business %}
-        <div class="card">{{biz.name}} {{biz.phone}} {{biz.hood}}</div>
+        <div class="card">
+          <div class="card-title">{{biz.name|title}}</div>
+          <div class="card-body">{{biz.phone}} <br />{{biz.email}}</div>
+          <p><small class="text-muted">{{biz.hood}}</small></p>
+        </div>
         {% endfor %} {% endif %}
       </div>
-      <div class="col-md-2">
-        <h4 class="text-center">Hood Watch Users</h4>
+      <div class="col-md-2" style="overflow: scroll;">
+        <h4 class="text-center">Users</h4>
         {% if profiles %} {% for member in profiles %}
         <div class="card">
           {% if user.is_admin %}
-          <a href="/adminprofile/{{member.id}}">{{member.username}}</a>
-          {% else %}<a href="/profile/{{member.id}}">{{member.username}}</a>
+          <a href="/adminprofile/{{member.id}}">{{member.username|title}}</a>
+          {% else %}<a href="/profile/{{member.id}}"
+            >{{member.username|title}}</a
+          >
           {% endif %}
         </div>
         {% endfor %} {% endif %}

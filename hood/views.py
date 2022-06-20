@@ -109,6 +109,7 @@ def memberprof(request, id):
     user=User.objects.filter(id=id).first()
     profile = Profile.objects.get(user=id)
     posts = Post.filter_by_user(user.id).order_by('-date')
+    bizs = Business.filter_by_user(user.id).order_by('-date')
     current_user = request.user
     if request.method == 'POST':
         pro_form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
@@ -126,6 +127,7 @@ def adminprof(request, id):
     user=User.objects.filter(id=id).first()
     admin = Admin.objects.get(user=id)
     posts = Post.filter_by_user(user.id).order_by('-date')
+    bizs = Business.filter_by_user(user.id).order_by('-date')
     current_user = request.user
     if request.method == 'POST':
         ad_form = AdminForm(request.POST, request.FILES, instance=request.user.admin)
