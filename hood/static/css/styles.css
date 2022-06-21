@@ -62,3 +62,14 @@ a {
 .card-text {
     color: #023047;
 }
+
+.hood3 {
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    height: 40vh;
+    background-image: url(../images/hood3.jpeg);
+    background-size: contain;
+    border-radius: 10px;
+}
