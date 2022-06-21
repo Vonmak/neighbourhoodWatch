@@ -58,7 +58,6 @@
 .hero3 {
     position: relative;
     z-index: 2;
-    border: 1px solid rgb(0, 0, 0);
 }
 
 .about {
