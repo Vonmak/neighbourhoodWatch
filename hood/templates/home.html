@@ -3,7 +3,7 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-3"style="overflow: scroll;">
-        <h4 class="text-center">Hoods</h4>
+        <h4 class="text-center text-white">Hoods</h4>
         {% if hoods %}{% for hood in hoods %}
         <div class="card">
           <a href="/hood/{{hood.id}}">{{hood.name}}</a>
@@ -11,7 +11,7 @@
         {% endfor %} {% endif %}
       </div>
       <div class="col-md-4"style="overflow: scroll;">
-        <h4 class="text-center">Posts.</h4>
+        <h4 class="text-center text-white">Posts.</h4>
         {% if posts %}{% for post in posts %}
         <div class="card">
           <div class="card-title">{{post.title}}</div>
@@ -26,7 +26,7 @@
         {% endfor %} {% endif %}
       </div>
       <div class="col-md-3"style="overflow: scroll;">
-        <h4 class="text-center">Businesses</h4>
+        <h4 class="text-center text-white">Businesses</h4>
         {% if business %} {% for biz in business %}
         <div class="card">
           <div class="card-title">{{biz.name|title}}</div>
@@ -36,7 +36,7 @@
         {% endfor %} {% endif %}
       </div>
       <div class="col-md-2" style="overflow: scroll;">
-        <h4 class="text-center">Users</h4>
+        <h4 class="text-center text-white">Users</h4>
         {% if profiles %} {% for member in profiles %}
         <div class="card">
           {% if user.is_admin %}
